@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ],
           ),
           onAnimationEnd: () => debugPrint("On Fade In End"),
-          nextScreen: Home(),
+          nextScreen: HomePage(username: AutofillHints.username),
         );
   }
 }

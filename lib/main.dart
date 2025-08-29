@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_mysiswa/page/splash_screen.dart';
-import 'page/splash_screen.dart';
+// import 'page/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
