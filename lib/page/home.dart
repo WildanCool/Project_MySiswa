@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project_mysiswa/page/date.dart';
 import 'package:project_mysiswa/page/inbox.dart';
+import 'package:project_mysiswa/page/profile.dart';
+import 'package:project_mysiswa/page/school.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -50,10 +53,37 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(onPressed: () {}, icon: Icon(Icons.home)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.school)),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => School1()),
+                );
+              },
+              icon: Icon(Icons.school),
+            ),
             SizedBox(width: 30),
-            IconButton(onPressed: () {}, icon: Icon(Icons.calendar_month)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.person)),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Date()),
+                );
+              },
+              icon: Icon(Icons.calendar_month),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        Profile(username: AutofillHints.username),
+                  ),
+                );
+              },
+              icon: Icon(Icons.person),
+            ),
           ],
         ),
       ),

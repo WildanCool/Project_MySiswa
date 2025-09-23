@@ -13,6 +13,7 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordControl = TextEditingController();
   final TextEditingController usernameControl = TextEditingController();
   bool _obscured = true;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +63,7 @@ class _LoginState extends State<Login> {
                     String username = usernameControl.text;
                     String password = passwordControl.text;
 
-                    if (username == "Anonymous000" && password == "12345") {
+                    if (username == "Admin" && password == "12345") {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
