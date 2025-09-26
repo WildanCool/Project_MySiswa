@@ -6,14 +6,21 @@ class Date extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Date")),
+      appBar: AppBar(
+        title: const Text("Kalender Akademik"),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        elevation: 0,
+      ),
+      backgroundColor: Colors.grey[100],
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildCard("Kaldik semester ganjil 2025"),
-            const SizedBox(height: 12),
-            _buildCard("Kaldik semester genap 2026"),
+            _buildCard("Kaldik Semester Ganjil 2025"),
+            const SizedBox(height: 16),
+            _buildCard("Kaldik Semester Genap 2026"),
           ],
         ),
       ),
@@ -22,16 +29,32 @@ class Date extends StatelessWidget {
 
   Widget _buildCard(String text) {
     return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.blue[600],
-        borderRadius: BorderRadius.circular(12),
+        gradient: LinearGradient(
+          colors: [Colors.blue.shade400, Colors.blue.shade700],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.withOpacity(0.3),
+            offset: const Offset(0, 6),
+            blurRadius: 12,
+          ),
+        ],
       ),
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
+          ),
         ),
       ),
     );

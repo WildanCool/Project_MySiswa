@@ -18,27 +18,50 @@ class _TugasPageState extends State<TugasPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Tambah Tugas"),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: Text(
+            "Tambah Tugas",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: matpelController,
-                decoration: const InputDecoration(labelText: "Mata Pelajaran"),
+                decoration: InputDecoration(
+                  labelText: "Mata Pelajaran",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 12),
               TextField(
                 controller: tugasController,
-                decoration: const InputDecoration(labelText: "Deskripsi Tugas"),
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelText: "Deskripsi Tugas",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
             ],
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Batal"),
+              child: Text("Batal", style: TextStyle(color: Colors.red)),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               onPressed: () {
                 if (matpelController.text.isNotEmpty &&
                     tugasController.text.isNotEmpty) {
@@ -51,7 +74,7 @@ class _TugasPageState extends State<TugasPage> {
                   Navigator.pop(context);
                 }
               },
-              child: const Text("Simpan"),
+              child: Text("Simpan", style: TextStyle(color: Colors.white)),
             ),
           ],
         );
@@ -59,27 +82,55 @@ class _TugasPageState extends State<TugasPage> {
     );
   }
 
+  void _deleteTugas(int index) {
+    setState(() {
+      tugas.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tugas Sekolah")),
+      appBar: AppBar(
+        title: Text("Tugas Sekolah"),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
       body: tugas.isEmpty
-          ? const Center(child: Text("Belum ada tugas"))
+          ? Center(
+              child: Text(
+                "Belum ada tugas",
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            )
           : ListView.builder(
               itemCount: tugas.length,
               itemBuilder: (context, index) {
                 return Card(
-                  margin: const EdgeInsets.all(8),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 3,
+                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   child: ListTile(
-                    title: Text(tugas[index]['mapel']!),
+                    leading: Icon(Icons.book, color: Colors.blue),
+                    title: Text(
+                      tugas[index]['mapel']!,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     subtitle: Text(tugas[index]['desc']!),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete, color: Colors.red),
+                      onPressed: () => _deleteTugas(index),
+                    ),
                   ),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
         onPressed: _addTugasDialog,
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
     );
   }

@@ -6,20 +6,25 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String email = "${username.toLowerCase()}@gmail.com";
     return Scaffold(
       appBar: AppBar(title: const Text("Profile")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             CircleAvatar(
               radius: 50,
               backgroundColor: Colors.blue,
               child: Icon(Icons.person, size: 50, color: Colors.white),
             ),
             SizedBox(height: 20),
-            Text(AutofillHints.username, style: TextStyle(fontSize: 20)),
-            Text("username@email.com"),
+            Text(
+              username,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+
+            Text(email),
           ],
         ),
       ),

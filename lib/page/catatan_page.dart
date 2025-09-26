@@ -18,27 +18,50 @@ class _CatatanPageState extends State<CatatanPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Tambah Catatan"),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title:  Text(
+            "Tambah Catatan",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: titleController,
-                decoration: const InputDecoration(labelText: "Judul Catatan"),
+                decoration: InputDecoration(
+                  labelText: "Judul Catatan",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
-              const SizedBox(height: 10),
+               SizedBox(height: 12),
               TextField(
                 controller: descController,
-                decoration: const InputDecoration(labelText: "Deskripsi"),
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelText: "Deskripsi",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
             ],
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Batal"),
+              child:  Text("Batal", style: TextStyle(color: Colors.red)),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               onPressed: () {
                 if (titleController.text.isNotEmpty &&
                     descController.text.isNotEmpty) {
@@ -51,7 +74,10 @@ class _CatatanPageState extends State<CatatanPage> {
                   Navigator.pop(context);
                 }
               },
-              child: const Text("Simpan"),
+              child:  Text(
+                "Simpan",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         );
@@ -59,27 +85,58 @@ class _CatatanPageState extends State<CatatanPage> {
     );
   }
 
+  void _deleteNote(int index) {
+    setState(() {
+      notes.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Catatan")),
+      appBar: AppBar(
+        title:  Text("Catatan"),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
       body: notes.isEmpty
-          ? const Center(child: Text("Belum ada catatan"))
+          ?  Center(
+              child: Text(
+                "Belum ada catatan",
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            )
           : ListView.builder(
               itemCount: notes.length,
               itemBuilder: (context, index) {
                 return Card(
-                  margin: const EdgeInsets.all(8),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 3,
+                  margin:  EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   child: ListTile(
-                    title: Text(notes[index]['title']!),
+                    leading:  Icon(Icons.note, color: Colors.blue),
+                    title: Text(
+                      notes[index]['title']!,
+                      style:  TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     subtitle: Text(notes[index]['desc']!),
+                    trailing: IconButton(
+                      icon:  Icon(Icons.delete, color: Colors.red),
+                      onPressed: () => _deleteNote(index),
+                    ),
                   ),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
         onPressed: _addNoteDialog,
-        child: const Icon(Icons.add),
+        child:  Icon(Icons.add),
       ),
     );
   }

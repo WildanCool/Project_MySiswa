@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:project_mysiswa/page/login.dart';
 
 import 'home.dart';
 
@@ -41,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
       onAnimationEnd: () => debugPrint("On Fade In End"),
-      nextScreen: HomePage(username: AutofillHints.username),
+      nextScreen: Login(),
     );
   }
 }
