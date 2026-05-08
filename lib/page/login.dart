@@ -46,7 +46,7 @@ class _LoginState extends State<Login> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   prefixIcon: Icon(Icons.person),
-                ),
+                ),  
               ),
               SizedBox(height: 20),
 

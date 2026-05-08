@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_mysiswa/page/home.dart';
 
 class Date extends StatelessWidget {
   const Date({super.key});
@@ -21,6 +22,21 @@ class Date extends StatelessWidget {
             _buildCard("Kaldik Semester Ganjil 2025"),
             const SizedBox(height: 16),
             _buildCard("Kaldik Semester Genap 2026"),
+
+            SizedBox(height: 16),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        HomePage(username: AutofillHints.username),
+                  ),
+                );
+              },
+              child: Text("Kembali"),
+            ),
           ],
         ),
       ),

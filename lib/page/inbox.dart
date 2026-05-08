@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_mysiswa/page/home.dart';
 
 class Inbox extends StatelessWidget {
   const Inbox({super.key});
@@ -20,6 +21,19 @@ class Inbox extends StatelessWidget {
             Icon(Icons.notifications_off, size: 50, color: Colors.grey),
             SizedBox(height: 10),
             Text("Tidak Ada Notifikasi"),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        HomePage(username: AutofillHints.username),
+                  ),
+                );
+              },
+              child: Text("Kembali"),
+            ),
           ],
         ),
       ),
